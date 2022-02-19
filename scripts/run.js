@@ -19,17 +19,14 @@ async function main() {
   const balance = await hre.ethers.provider.getBalance(domainContract.address);
   console.log("Contract balance:", hre.ethers.utils.formatEther(balance));
 
-  /*txn = await domainContract.setRecord("Luke","Hello world applications might not seem like much, but they can lead to exceptional things");
+  txn = await domainContract.setRecord("Luke","Hello world applications might not seem like much, but they can lead to exceptional things");
   await txn.wait();
 
-  txn = await domainContract.connect(randomPerson).register("Tyson");
+  txn = await domainContract.connect(randomPerson).register("Tyson",{value: hre.ethers.utils.parseEther('0.7')});
   await txn.wait();
 
   txn = await domainContract.connect(randomPerson).setRecord("Tyson","Web3 is really awesome!");
   await txn.wait();
-
-  txn = await domainContract.connect(randomPerson).setRecord("Luke","haha im changing something that isn't mine");
-  await txn.wait();*/
 }
 
 main()
