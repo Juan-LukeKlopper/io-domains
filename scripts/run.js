@@ -3,20 +3,29 @@ const hre = require("hardhat");
 async function main() {
   const [owner, randomPerson] = await hre.ethers.getSigners();
 
-  const domainContractFactory = await hre.ethers.getContractFactory("Domains");
+  const domainContractFactory = await hre.ethers.getContractFactory("IODomains");
   const domainContract = await domainContractFactory.deploy();
   await domainContract.deployed();
  
-  console.log("Domain service deployed to:", domainContract.address);
-  console.log("Contract deployed by: ", owner.address);
+  console.log("IODomain service has been deployed to:", domainContract.address);
+  console.log("The contract was deployed by: ", owner.address);
 
-  let txn = await domainContract.register("doom");
+  let txn = await domainContract.register("Luke");
   await txn.wait();
 
-  let domainOwner = await domainContract.getAddress("doom");
-  console.log("owner of domain: ", domainOwner);
+  let domainOwner = await domainContract.getAddress("Luke");
+  console.log("The owner of new domain: ", domainOwner);
 
-  txn = await domainContract.connect(randomPerson).setRecord("Doom","haha im changing something that isn't mine");
+  txn = await domainContract.setRecord("Luke","Hello world applications might not seem like much, but they can lead to exceptional things");
+  await txn.wait();
+
+  txn = await domainContract.connect(randomPerson).register("Tyson");
+  await txn.wait();
+
+  txn = await domainContract.connect(randomPerson).setRecord("Tyson","Web3 is really awesome!");
+  await txn.wait();
+
+  txn = await domainContract.connect(randomPerson).setRecord("Luke","haha im changing something that isn't mine");
   await txn.wait();
 }
 
