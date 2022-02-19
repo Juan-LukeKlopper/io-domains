@@ -7,9 +7,6 @@ module.exports = {
 		mumbai: {
       url: ALCHEMY_MUMBAI_URL,
       accounts: [PRIVATE_KEY],
-		},
-    mainnet: {
-      
-    }
+		}
   }
 };
