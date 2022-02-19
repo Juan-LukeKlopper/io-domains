@@ -71,7 +71,7 @@ contract DomainNameService is ERC721URIStorage {
 
         console.log("\n--------------------------------------------------------");
         console.log("Final tokenURI", finalTokenUri);
-        console.log("--------------------------------------------------------/n");
+        console.log("--------------------------------------------------------\n");
 
         _safeMint(msg.sender, newRecordId);
         _setTokenURI(newRecordId, finalTokenUri);
