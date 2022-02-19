@@ -2,18 +2,36 @@
 
 pragma solidity ^0.8.10;
 
+import { StringUtils } from "./libraries/StringUtils.sol";
 import "hardhat/console.sol";
 
 contract IODomains {
+    string public tld;
+
 		mapping(string => address) public domains;
         mapping(string => string) public records;
 
-    constructor() {
-        console.log("This is the IO domain naming service, which allows you to register a human readable name ending in .io that links to your Polygon address.");
+    constructor(string memory _tld) payable {
+        tld = _tld;
+        console.log("This is the %s domain naming service, which allows you to register a human readable name ending in %s that links to your Polygon address.", _tld);
+    }
+
+    function price(string calldata name) public pure returns (uint) {
+        uint len = StringUtils.strlen(name);
+        require (len > 0);
+        if (len == 3) {
+            return 5*10**17;
+        } else if (len == 4) {
+            return 4*10**17;
+        } else {
+            return 3*10**17;
+        }
     }
 	
-    function register(string calldata name) public {
+    function register(string calldata name) public payable{
         require(domains[name] == address(0));
+        uint _price = this.price(name);
+        require(msg.value >= _price, "Not enough MATIC to mint domain.");
         domains[name] = msg.sender;
         console.log("%s has registered the custom IOdomain %s", msg.sender,name);
     }
