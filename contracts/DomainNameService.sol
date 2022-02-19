@@ -1,11 +1,11 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.10;
 
 import { StringUtils } from "./libraries/StringUtils.sol";
 import "hardhat/console.sol";
 
-contract IODomains {
+contract DomainNameService {
     string public tld;
 
 		mapping(string => address) public domains;
@@ -13,7 +13,7 @@ contract IODomains {
 
     constructor(string memory _tld) payable {
         tld = _tld;
-        console.log("This is the %s domain naming service, which allows you to register a human readable name ending in %s that links to your Polygon address.", _tld);
+        console.log("This is the %s domain naming service, which allows you to register a human readable name ending in .%s that links to your Polygon address.", _tld, _tld);
     }
 
     function price(string calldata name) public pure returns (uint) {
