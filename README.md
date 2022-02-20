@@ -1,15 +1,7 @@
-# Basic Sample Hardhat Project
+# IO domains on polygon
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+This is a project which will allow users to create their own domain name ending in .io which is linked to their public key. This allows users to give someone a human readable address that is easy to remember instead of a long confusing public key.
 
-Try running some of the following tasks:
+This project uses React, Hardhat, Node.js and the Polygon mumbai testnet.
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+and has been deployed to address: 0x722Efb200C879f48c7ba54C8c21C12a3BD9b0AD8
